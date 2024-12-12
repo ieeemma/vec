@@ -45,7 +45,10 @@ pub fn get_unsafe(arr: Array(m, a), index: Int) -> a
 /// Take elements while a predicate is true.
 @external(erlang, "./vec_ffi.erl", "take_while")
 @external(javascript, "./vec_ffi.mjs", "take_while")
-pub fn take_while(arr: Array(m, a), pred: fn(a) -> Bool) -> Array(m, a)
+pub fn take_while(
+  arr: Array(m, a),
+  pred: fn(a) -> Bool,
+) -> #(Array(m, a), Array(m, a))
 
 // ===== Copying =====
 
@@ -88,13 +91,13 @@ pub fn map(arr: Array(m, a), fun: fn(a) -> b) -> Array(m, b)
 pub fn filter(arr: Array(m, a), fun: fn(a) -> Bool) -> Array(m, a)
 
 /// Left-fold a function over the elements of an array.
-@external(erlang, "./vec_ffi.erl", "foldl")
-@external(javascript, "./vec_ffi.mjs", "foldl")
-pub fn fold(arr: Array(m, a), init: b, fun: fn(a, b) -> b) -> b
+@external(erlang, "./vec_ffi.erl", "fold")
+@external(javascript, "./vec_ffi.mjs", "fold")
+pub fn fold(arr: Array(m, a), init: b, fun: fn(b, a) -> b) -> b
 
 /// Right-fold a function over the elements of an array.
-@external(erlang, "./vec_ffi.erl", "foldr")
-@external(javascript, "./vec_ffi.mjs", "foldr")
+@external(erlang, "./vec_ffi.erl", "fold_right")
+@external(javascript, "./vec_ffi.mjs", "fold_right")
 pub fn fold_right(arr: Array(m, a), init: b, fun: fn(a, b) -> b) -> b
 
 /// Zip two arrays together with a function.
@@ -112,7 +115,7 @@ pub fn zip(
 @external(erlang, "./vec_ffi.erl", "sort")
 @external(javascript, "./vec_ffi.mjs", "sort")
 pub fn sort(
-  arr: Array(m, b),
+  arr: Array(m, a),
   on: fn(a) -> b,
   cmp: fn(b, b) -> Order,
 ) -> Array(m, a)
