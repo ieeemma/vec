@@ -4,8 +4,8 @@ import vec.{type Array, type Imm, type Mut}
 // Construction
 
 /// Create an empty array.
-@external(erlang, "./mut_ffi.erl", "new")
-@external(javascript, "./mut_ffi.mjs", "new_")
+@external(erlang, "./vec_ffi.erl", "new")
+@external(javascript, "./vec_ffi.mjs", "new_")
 pub fn new() -> Array(Mut, a)
 
 // Conversion
@@ -39,13 +39,13 @@ pub fn to_mut_unsafe(arr: Array(Imm, a)) -> Array(Mut, a)
 /// Set the element at the given index.
 @external(erlang, "./mut_ffi.erl", "set")
 @external(javascript, "./mut_ffi.mjs", "set")
-pub fn set(arr: Array(Mut, a), index: Int, value: a) -> Result(Nil, Nil)
+pub fn set(arr: Array(Mut, a), idx: Int, value: a) -> Result(Nil, Nil)
 
 /// Set the element at the given index.
 /// Undefined behaviour if the index is out of bounds.
 @external(erlang, "./mut_ffi.erl", "set_unsafe")
 @external(javascript, "./mut_ffi.mjs", "set_unsafe")
-pub fn set_unsafe(arr: Array(Mut, a), index: Int, value: a) -> Nil
+pub fn set_unsafe(arr: Array(Mut, a), idx: Int, value: a) -> Nil
 
 /// Push an element to the end of the array.
 @external(erlang, "./mut_ffi.erl", "append")

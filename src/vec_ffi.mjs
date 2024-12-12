@@ -3,6 +3,10 @@ import { Gt } from "../gleam_stdlib/gleam/order.mjs";
 
 const Nil = undefined;
 
+export function noop(arr) {
+  return arr;
+}
+
 export function new_() {
   return [];
 }
